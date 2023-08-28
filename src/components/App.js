@@ -24,12 +24,18 @@ function App() {
   function addToInventory(potionID) {
     const potion = potions.find((potion) => potion.id === potionID);
 
+    console.log("Potion: ");
+    console.log(potion);
+    
     if (gold - potion.buyCost >= 0) {
       setGold(gold - potion.buyCost);
 
       const foundItem = inventory.find((potion) => {
         return potion.id === potionID;
       });
+
+      console.log("Found item: ");
+      console.log(foundItem)
 
       if (foundItem) {
         const updatedPotion = { ...foundItem, amount: foundItem.amount + 1 };
@@ -86,12 +92,12 @@ function App() {
   return (
     <div className="app">
       <div className="potion-shop">
-        <Shop potions={potions} addToInventory={addToInventory} />
+        <Shop potions={potions} testFunction={addToInventory} />
         <Inventory
           stopShake={stopShake}
           shake={shake}
           gold={gold}
-          sell={sell}
+          testFunction={sell}
           potions={potions}
           inventory={inventory}
         />

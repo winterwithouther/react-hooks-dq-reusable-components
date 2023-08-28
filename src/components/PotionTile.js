@@ -8,8 +8,16 @@ Consider what the tiles have in common and what they do not:
 - For things that are different, consider how you might make use of props and JSX to have the same component behave differently when rendered by different parents 
 */
 
-function PotionTile(props) {
-  return <div>PotionTile</div>;
+function PotionTile({potion, testFunction, children}) {
+  console.log(children)
+  return (
+    <div className={children.type.includes("x") ? "inventory-card" : "card"}>
+      <div onClick={() => testFunction(potion.id)} className="image-wrapper">
+        <img className="image" alt={potion.name} src={potion.image_url}></img>
+      </div>
+      {children}
+    </div>
+  )
 }
 
 export default PotionTile;
